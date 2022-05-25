@@ -1,27 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="./assets/css/style.css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Weather Dashboard</title>
 </head>
+
 <body>
-    <header class = "text-center border-dark">
+    <header class="text-center border-dark">
         <h1>Weather Dashboard</h1>
     </header>
 
-    <main class ="container">
-        <div class ="row">
-            
+    <main class="container">
+        <div class="row">
+            <sidebar class="col-sm-12 col-md-3">
+                <form id="city-form" class="city-form border-bottom border-dark pb-3 justify-content-center fill">
+                    <label for="city" class="city-form big-bold"> Search for a city:</label>
+                    <input type="text" id="city-input" class="city-form fill md-3" name="city">
+                    <button class="btn btn-primary city-form fill" id="search-btn" type="submit">Search</button>
+                </form>
+                <div id="searched-cities" class="pt-3">
+                    <!--for city buttons to be append after search-->
+                </div>
+            </sidebar>
+            <div class="col-sm-12 col-md-9">
+                <div id="current-container" class="border border-dark bg-white mt-2">
+                    <!--Current Weather-->
+                </div>
+                <div class="big-bold my-2"> 5 Day Forecast:</div>
+                <div id="five-day-container" class="row">
+                    <!--5day forecast-->
+                </div>
+            </div>
         </div>
     </main>
-    
+
     <!--adding javascript-->
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script type="text/javascript" src="./assets/js/homepage.js"></script>
 </body>
+
 </html>
