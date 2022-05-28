@@ -11,38 +11,44 @@
 </head>
 
 <body>
-    <header class="text-center border-dark">
-        <h1>Weather Dashboard</h1>
+    <!--Header-->
+    <header class="text-center border border-dark text-light col-12 bg-primary">
+        <h1 >Weather Dashboard</h1>
     </header>
 
+
     <main class="container">
-        <div class="row">
-            <sidebar class="col-sm-12 col-md-3">
-                <form id="city-form" class="city-form border-bottom border-dark pb-3 justify-content-center fill">
-                    <label for="city" class="city-form big-bold"> Search for a city:</label>
-                    <input type="text" id="city-input" class="city-form fill md-3" name="city">
-                    <button class="btn btn-primary city-form fill" id="search-btn" type="submit">Search</button>
+        <div class = "row">
+            <!--search row-->
+            <sidebar class="col-8 col-md-3 col-sm-2 p-2">
+                <form id = "city-search-form">
+                    <h2>Search for a City</h2>
+                    <input id="city" type = "text" class = "form-input"/>
+                    <button class = "btn btn-primary" type = "submit">Search</button>
                 </form>
-                <div id="searched-cities" class="pt-3">
-                    <!--for city buttons to be append after search-->
-                </div>
+                <div class ="past-search" id = "past-search-buttons"></div>
             </sidebar>
-            <div class="col-sm-12 col-md-9">
-                <div id="current-container" class="border border-dark bg-white mt-2">
-                    <!--Current Weather-->
+            <div class="col-12 col-md-9 col-sm-4">
+                <!--current city's weather-->
+                <div class = "row selected-city" id = "current-forecast">
+                    <div class = "col-12 col-md-9 col-sm-4">
+                        <h2 id="searched-city"></h2>
+                        <div id = "current-weather" class = "list-group"></div>
+                    </div>  
                 </div>
-                <div class="big-bold my-2"> 5 Day Forecast:</div>
-                <div id="five-day-container" class="row">
-                    <!--5day forecast-->
-                </div>
+                <!--5 day forecast-->
+                <div class = "row" id = "five-day">
+                        <h2 class= "col=8 col-md-6 col-sm-4" id = "forecast">5 Day Forecast:</h2>
+                        <div class = "d-flex" id = "fiveday-container"></div>
+                </div>  
             </div>
         </div>
     </main>
-
+    
     <!--adding javascript-->
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script type="text/javascript" src="./assets/js/homepage.js"></script>
+    <script type="text/javascript" src="./assets/js/script.js"></script>
 </body>
 
 </html>
