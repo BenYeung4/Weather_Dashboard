@@ -13,38 +13,38 @@
 <body>
     <!--Header-->
     <header class="text-center border border-dark text-light col-12 bg-primary">
-        <h1 >Weather Dashboard</h1>
+        <h1>Weather Dashboard</h1>
     </header>
 
 
     <main class="container">
-        <div class = "row">
+        <div class="row">
             <!--search row-->
             <sidebar class="col-8 col-md-3 col-sm-2 p-2">
-                <form id = "city-search-form">
+                <form id="city-search-form">
                     <h2>Search for a City</h2>
-                    <input id="city" type = "text" class = "form-input"/>
-                    <button class = "btn btn-primary" type = "submit">Search</button>
+                    <input id="city" type="text" class="form-input" />
+                    <button class="btn btn-primary" type="submit">Search</button>
                 </form>
-                <div class ="past-search" id = "past-search-buttons"></div>
+                <div class="past-search" id="past-search-buttons"></div>
             </sidebar>
             <div class="col-12 col-md-9 col-sm-4">
                 <!--current city's weather-->
-                <div class = "row selected-city" id = "current-forecast">
-                    <div class = "col-12 col-md-9 col-sm-4">
+                <div class="row selected-city" id="current-forecast">
+                    <div class="col-12 col-md-9 col-sm-4">
                         <h2 id="searched-city"></h2>
-                        <div id = "current-weather" class = "list-group"></div>
-                    </div>  
+                        <div id="current-weather" class="list-group"></div>
+                    </div>
                 </div>
                 <!--5 day forecast-->
-                <div class = "row" id = "five-day">
-                        <h2 class= "col=8 col-md-6 col-sm-4" id = "forecast">5 Day Forecast:</h2>
-                        <div class = "d-flex" id = "fiveday-container"></div>
-                </div>  
+                <div class="row" id="five-day">
+                    <h2 class="col=8 col-md-6 col-sm-4" id="forecast">5 Day Forecast:</h2>
+                    <div class="d-flex" id="fiveday-container"></div>
+                </div>
             </div>
         </div>
     </main>
-    
+
     <!--adding javascript-->
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>

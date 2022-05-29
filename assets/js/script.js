@@ -1,5 +1,5 @@
 //api key storage
-var apiKey = "&appid=755c65e42d689835b8fd27ff1e21603c"
+var apiKey = "&appid=755c65e42d689835b8fd27ff1e21603c";
 
 var cities = [];
 var cityFormEl = document.querySelector("#city-search-form");
@@ -15,8 +15,8 @@ var formSumbitHandler = function (event) {
     event.preventDefault();
     var city = cityInputEl.value.trim();
     if (city) {
-        getCityWeather(city);
-        get5Day(city);
+        CityWeather(city);
+        fiveDays(city);
         cities.unshift({ city });
         cityInputEl.value = "";
     } else {
@@ -32,8 +32,8 @@ var saveSearch = function () {
 };
 
 //retrieving the api with the city that we entered
-var getCityWeather = function (city) {
-    var apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial${apiKey}`
+var CityWeather = function (city) {
+    var apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial${apiKey}`;
 
     fetch(apiURL)
         .then(function (response) {
@@ -50,29 +50,30 @@ var displayWeather = function (weather, searchCity) {
     citySearchInputEl.textContent = searchCity;
 
     //create date element
-    var currentDate = document.createElement("span")
+    var currentDate = document.createElement("span");
     currentDate.textContent = " " + moment(weather.dt.value).format("- MMMM Do, YYYY" + "");
 
     //create an image element
-    var weatherIcon = document.createElement("img")
+    var weatherIcon = document.createElement("img");
     weatherIcon.setAttribute("src", `https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`);
 
     //create a span element for temperature data
     var temperatureEl = document.createElement("span");
     temperatureEl.textContent = "Temperature: " + weather.main.temp + " °F";
-    temperatureEl.classList = "list-group-item"
+    temperatureEl.classList = "list-group-item";
 
     //create a span element for Humidity data
     var humidityEl = document.createElement("span");
     humidityEl.textContent = "Humidity: " + weather.main.humidity + " %";
-    humidityEl.classList = "list-group-item"
+    humidityEl.classList = "list-group-item";
 
     //create a span element for Wind data
     var windSpeedEl = document.createElement("span");
     windSpeedEl.textContent = "Wind Speed: " + weather.wind.speed + " MPH";
-    windSpeedEl.classList = "list-group-item"
+    windSpeedEl.classList = "list-group-item";
 
     //append, display the content
+    citySearchInputEl.appendChild(currentDate);
     citySearchInputEl.appendChild(weatherIcon);
     weatherContainerEl.appendChild(temperatureEl);
     weatherContainerEl.appendChild(humidityEl);
@@ -80,11 +81,12 @@ var displayWeather = function (weather, searchCity) {
 
     var lat = weather.coord.lat;
     var lon = weather.coord.lon;
-    getUvIndex(lat, lon)
+    UvIndex(lat, lon)
 }
 
-var getUvIndex = function (lat, lon) {
-    var apiURL = `https://api.openweathermap.org/data/2.5/uvi?${apiKey}&lat=${lat}&lon=${lon}`
+//fetching api of the UV
+var UvIndex = function (lat, lon) {
+    var apiURL = `https://api.openweathermap.org/data/2.5/uvi?${apiKey}&lat=${lat}&lon=${lon}`;
     fetch(apiURL)
         .then(function (response) {
             response.json().then(function (data) {
@@ -96,20 +98,20 @@ var getUvIndex = function (lat, lon) {
 //displaying UV
 var displayUvIndex = function (index) {
     var uvIndexEl = document.createElement("div");
-    uvIndexEl.textContent = "UV Index: "
-    uvIndexEl.classList = "list-group-item"
+    uvIndexEl.textContent = "UV Index: ";
+    uvIndexEl.classList = "list-group-item";
 
-    uvIndexValue = document.createElement("span")
-    uvIndexValue.textContent = index.value
+    uvIndexValue = document.createElement("span");
+    uvIndexValue.textContent = index.value;
 
     //append, display
     uvIndexEl.appendChild(uvIndexValue);
     weatherContainerEl.appendChild(uvIndexEl);
 }
 
-var get5Day = function (city) {
+var fiveDays = function (city) {
 
-    var apiURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&${apiKey}`
+    var apiURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&${apiKey}`;
 
     fetch(apiURL)
         .then(function (response) {
@@ -121,7 +123,7 @@ var get5Day = function (city) {
 
 //display five day forcast
 var display5Day = function (weather) {
-    forecastContainerEl.textContent = ""
+    forecastContainerEl.textContent = "";
 
 
     var forecast = weather.list;
@@ -132,12 +134,12 @@ var display5Day = function (weather) {
         forecastEl.classList = "card bg-primary text-light m-2";
 
         //create date element
-        var forecastDate = document.createElement("h5")
-        forecastDate.textContent = moment.unix(dailyForecast.dt).format("MMM D, YYYY");
-        forecastDate.classList = "card-header text-center"
+        var forecastDate = document.createElement("h5");
+        forecastDate.textContent = moment.unix(dailyForecast.dt).format("MMMM Do, YYYY");
+        forecastDate.classList = "card-header text-center";
 
         //create an image element
-        var weatherIcon = document.createElement("img")
+        var weatherIcon = document.createElement("img");
         weatherIcon.classList = "card-body text-center";
         weatherIcon.setAttribute("src", `https://openweathermap.org/img/wn/${dailyForecast.weather[0].icon}@2x.png`);
 
@@ -150,10 +152,10 @@ var display5Day = function (weather) {
         var forecastHumEl = document.createElement("span");
         forecastHumEl.classList = "card-body text-center";
         forecastHumEl.textContent = "Humidity " + dailyForecast.main.humidity + "  %";
-        
+
         //create wind span
         var forecastWindEl = document.createElement("span");
-        forecastWindEl.classList = "card-body text-center"
+        forecastWindEl.classList = "card-body text-center";
         forecastWindEl.textContent = "Wind Speed: " + dailyForecast.wind.speed + " MPH";
 
         //display forecast details
@@ -170,20 +172,20 @@ var display5Day = function (weather) {
 //pull from local repository
 var pastSearch = function (pastSearch) {
 
-    pastSearchEl = document.createElement("button");
-    pastSearchEl.textContent = pastSearch;
-    pastSearchEl.classList = "d-flex w-100 btn-light border p-2";
-    pastSearchEl.setAttribute("data-city", pastSearch)
-    pastSearchEl.setAttribute("type", "submit");
+    pastEl = document.createElement("button");
+    pastEl.textContent = pastSearch;
+    pastEl.classList = "d-flex w-100 btn-light border p-2";
+    pastEl.setAttribute("data-city", pastSearch)
+    pastEl.setAttribute("type", "submit");
 
-    pastSearchButtonEl.prepend(pastSearchEl);
+    pastSearchButtonEl.prepend(pastEl);
 }
 
 var pastSearchHandler = function (event) {
-    var city = event.target.getAttribute("data-city")
+    var city = event.target.getAttribute("data-city");
     if (city) {
-        getCityWeather(city);
-        get5Day(city);
+        CityWeather(city);
+        fiveDays(city);
     }
 }
 
