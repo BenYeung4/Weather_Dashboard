@@ -10,3 +10,15 @@
 .split {
     width: 100%;
 }
+
+.favorable {
+    background-color: greenyellow;
+}
+
+.moderate {
+    background-color: yellow;
+}
+
+.severe {
+    background-color: red;
+}
